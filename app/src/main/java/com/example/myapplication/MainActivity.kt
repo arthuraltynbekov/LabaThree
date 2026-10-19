@@ -1,6 +1,13 @@
 
 package com.example.myapplication
-
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
+import androidx.compose.ui.unit.dp
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -34,10 +41,23 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun CharacterScreen(modifier: Modifier = Modifier) {
+    var input by remember { mutableStateOf("") }
+
     Column(
-        modifier = modifier.fillMaxSize(),
+        modifier = modifier
+            .fillMaxSize()
+            .padding(24.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(text = "Проверка символа")
+
+        Spacer(modifier = Modifier.height(20.dp))
+
+        OutlinedTextField(
+            value = input,
+            onValueChange = { input = it },
+            label = { Text("Введите символ") },
+            singleLine = true
+        )
     }
 }
