@@ -65,13 +65,28 @@ fun CharacterScreen(modifier: Modifier = Modifier) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
+
         Button(
             onClick = {
-                result = "Проверка запущена"
+                result = if (
+                    input.length != 1 ||
+                    input[0] !in 'A'..'Z'
+                ) {
+                    "Ошибка: введите одну латинскую заглавную букву"
+                } else {
+                    when (input[0]) {
+                        'L', 'M', 'K', 'D' ->
+                            "Это согласные буквы"
+
+                        else ->
+                            "Возможно, это гласные буквы"
+                    }
+                }
             }
         ) {
             Text("Проверить")
         }
+
 
         Spacer(modifier = Modifier.height(16.dp))
 
