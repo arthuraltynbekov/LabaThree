@@ -1,6 +1,7 @@
 
 package com.example.myapplication
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Button
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -39,9 +40,11 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+
 @Composable
 fun CharacterScreen(modifier: Modifier = Modifier) {
     var input by remember { mutableStateOf("") }
+    var result by remember { mutableStateOf("") }
 
     Column(
         modifier = modifier
@@ -59,5 +62,20 @@ fun CharacterScreen(modifier: Modifier = Modifier) {
             label = { Text("Введите символ") },
             singleLine = true
         )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Button(
+            onClick = {
+                result = "Проверка запущена"
+            }
+        ) {
+            Text("Проверить")
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Text(text = result)
     }
 }
+
